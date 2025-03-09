@@ -1,0 +1,74 @@
+
+/*
+ * File: failure.c
+ *
+ * Code generated for Simulink model 'failure'.
+ *
+ * Model version                  : 1.7
+ * Simulink Coder version         : 9.0 (R2018b) 24-May-2018
+ * C/C++ source code generated on : Sun Mar  9 14:47:40 2025
+ *
+ * Target selection: ert.tlc
+ * Embedded hardware selection: Intel->x86-64 (Windows64)
+ * Code generation objectives:
+ *    1. Execution efficiency
+ *    2. RAM efficiency
+ * Validation result: Not run
+ */
+
+#include "failure.h"
+
+/* External inputs (root inport signals with default storage) */
+ExtU rtU;
+
+/* External outputs (root outports fed by signals with default storage) */
+ExtY rtY;
+
+/* Model step function */
+void failure_step(void)
+{
+  /* Outputs for Atomic SubSystem: '<Root>/Subsystem' */
+  /* Outport: '<Root>/failure sens 1 ' incorporates:
+   *  Constant: '<S2>/Constant'
+   *  Constant: '<S3>/Constant'
+   *  Inport: '<Root>/VAPP1 '
+   *  Logic: '<S1>/Logical Operator'
+   *  RelationalOperator: '<S2>/Compare'
+   *  RelationalOperator: '<S3>/Compare'
+   */
+  rtY.failuresens1 = ((rtU.VAPP1 > 0.5) && (rtU.VAPP1 < 4.5));
+
+  /* Outport: '<Root>/failure sens 2' incorporates:
+   *  Constant: '<S4>/Constant'
+   *  Constant: '<S5>/Constant'
+   *  Inport: '<Root>/VAPP2   '
+   *  Logic: '<S1>/Logical Operator1'
+   *  RelationalOperator: '<S4>/Compare'
+   *  RelationalOperator: '<S5>/Compare'
+   */
+  rtY.failuresens2 = ((rtU.VAPP2 > 0.5) && (rtU.VAPP2 < 4.5));
+
+  /* Outport: '<Root>/coherncy ' incorporates:
+   *  Constant: '<S1>/Constant'
+   *  Inport: '<Root>/VAPP1 '
+   *  Inport: '<Root>/VAPP2   '
+   *  RelationalOperator: '<S1>/Relational Operator'
+   *  Sum: '<S1>/Add'
+   */
+  rtY.coherncy = (rtU.VAPP1 + rtU.VAPP2 == 5.0);
+
+  /* End of Outputs for SubSystem: '<Root>/Subsystem' */
+}
+
+/* Model initialize function */
+void failure_initialize(void)
+{
+  /* (no initialization code required) */
+}
+
+/*
+ * File trailer for generated code.
+ *
+ * [EOF]
+ */
+
